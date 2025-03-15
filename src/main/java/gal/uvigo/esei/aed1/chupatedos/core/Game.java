@@ -8,7 +8,6 @@ public class Game {
     
     public Game(IU iu) {
         this.iu = iu;
-
   }
   
    /**
@@ -22,7 +21,4 @@ public class Game {
 
 
   }
-
- 
-
 }

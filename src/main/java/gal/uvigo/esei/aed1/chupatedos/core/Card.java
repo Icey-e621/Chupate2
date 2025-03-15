@@ -57,8 +57,6 @@ public enum Card {
   public Suit getSuit() {
     return this.suit;
   }
-
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
