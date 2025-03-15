@@ -82,6 +82,13 @@ public class DeckOfCards {
         this.Cards[this.amount] = card;
         this.amount++;
     }
+    /**
+     * Calls {@link #fillDeck()} followed by {@link #shuffleDeck(int)}
+     */
+    public void fillShuffle(){
+        this.fillDeck();
+        this.shuffleDeck(5);
+    }
 
     // Here non commented and self explanatory methods
     public boolean isEmpty(){
