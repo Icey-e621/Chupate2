@@ -1,13 +1,5 @@
 package gal.uvigo.esei.aed1.chupatedos.iu;
 
-import gal.uvigo.esei.aed1.chupatedos.core.Card;
-import gal.uvigo.esei.aed1.chupatedos.core.DeckOfCards;
-import gal.uvigo.esei.aed1.chupatedos.core.Player;
-import gal.uvigo.esei.aed1.chupatedos.core.Suit;
-import gal.uvigo.esei.aed1.chupatedos.core.Table;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class IU {
@@ -22,7 +14,7 @@ public class IU {
      * Lee un num. de teclado
      *
      * @param msg El mensaje a visualizar.
-     * @return El num., como entero
+     * @return El num, como entero
      */
     public int readNumber(String msg) {
         boolean repeat;
@@ -62,9 +54,4 @@ public class IU {
     public void displayMessage(String msg) {
         System.out.println(msg);
     }
-
-
-    
-
-    
 }
