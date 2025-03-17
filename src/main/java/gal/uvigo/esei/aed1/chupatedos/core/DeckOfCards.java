@@ -97,7 +97,23 @@ public class DeckOfCards {
         this.fillDeck();
         this.shuffleDeck(5);
     }
-
+    /**
+     * Searches and removes a carrd from the deck
+     * @param card {@link Card} To be removed from the Deck
+     * @return true if card had been found and errased, false if not.
+     */
+    public boolean SearchRemove(Card card){
+        if (this.isEmpty()) return false; 
+        boolean remove = false;
+        for (int i = 0;i < this.amount;i++){
+            if (remove) this.Cards[i-1] = this.Cards[i];
+            if (card == this.Cards[i]){
+                remove = true;
+            }
+        }
+        if (remove) this.amount--;
+        return remove;
+    }
     // Here non commented and self explanatory methods
     public boolean isEmpty(){
         return this.amount==0;
