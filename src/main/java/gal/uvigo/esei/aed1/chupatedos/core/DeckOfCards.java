@@ -138,6 +138,7 @@ public class DeckOfCards {
             sb.append(" ").append(this.Cards[i].toString());
             if (this.amount-1!=i) sb.append(",");
         }
+        sb.append(" }");
         return sb.toString();
     }
     @Override
