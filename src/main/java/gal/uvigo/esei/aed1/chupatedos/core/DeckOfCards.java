@@ -3,6 +3,9 @@ package gal.uvigo.esei.aed1.chupatedos.core;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Class that simulates a Deck and internally acts as a Stack of the enum {@link gal.uvigo.esei.aed1.chupatedos.core.Card}
+ */
 public class DeckOfCards {
     private Card[] Cards;
     private int amount;
@@ -68,7 +71,7 @@ public class DeckOfCards {
     }
     /**
      * 
-     * @return shows card on top of the deck without errasing it from the Deck @throws IndexOutOfBoundsException if deck is empty
+     * @return Shows card on top of the deck without errasing it from the Deck @throws IndexOutOfBoundsException if deck is empty
      */
     public Card peek(){
         if (this.isEmpty()){
@@ -77,7 +80,7 @@ public class DeckOfCards {
         return Cards[this.amount];
     }
     /**
-     * 
+     * Adds a card to the top of the deck
      * @param card Card to be added to the top of the Deck @throws IndexOutOfBoundsException if the Deck can't hold more cards;
      */
     public void addCard(Card card){
