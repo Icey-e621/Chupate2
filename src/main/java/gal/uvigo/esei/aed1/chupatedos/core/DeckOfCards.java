@@ -1,5 +1,6 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class DeckOfCards {
@@ -16,18 +17,22 @@ public class DeckOfCards {
     /**
      * Fills the deck with all instances of {@link gal.uvigo.esei.aed1.chupatedos.core.Card#values()}
      */
-    public void fillDeck() {
+    public final void fillDeck() {
         int numCards = Card.values().length;
-        for (int i = 0; i < numCards; i++) {
-            this.Cards[i] = Card.values()[i];
-        }
+        System.arraycopy(Card.values(), 0, this.Cards, 0, numCards);
+        /** 2 formas de hacerlo :)
+         * for (int i = 0; i < numCards; i++) {
+         *  this.Cards[i] = Card.values()[i];
+         *   }
+         */
+        
         this.amount = numCards;
         this.isShuffled = false;
     }
     /**
      * @param Times How many times the deck will be shuffled @throws IllegalArgumentException if it is not between 1-20
      */
-    public void shuffleDeck(int Times) {
+    public final void shuffleDeck(int Times) {
         if (Times < 1 || Times > 20){
             // Im using string builder in case someone wants to catch the error because they do something like ask the user
             throw new IllegalArgumentException(new StringBuilder("Deck cannot be shuffled too many times, tried to shuffle: ").append(Times).toString());
@@ -47,7 +52,7 @@ public class DeckOfCards {
     /**
      * Invokes {@link #shuffleDeck(int)} with Parameter Times set to 1
      */
-    public void shuffleDeck() {
+    public final void shuffleDeck() {
         this.shuffleDeck(1);
         this.isShuffled = true;
     }
@@ -97,17 +102,15 @@ public class DeckOfCards {
     public boolean isShuffled(){
         return this.isShuffled;
     }
+    public boolean isFull(){
+        return Card.values().length <= this.amount;
+    }
 
     //Overriden Methods
     @Override
     public boolean equals(Object obj) {
-        DeckOfCards deck = (DeckOfCards) obj;
-        for(int i = 0;i<this.amount;i++){
-            if (this.Cards[i].getNumber() != deck.Cards[i].getNumber() || this.Cards[i].getSuit() != deck.Cards[i].getSuit()){
-                return false;
-            }
-        }
-        return true;
+        if (!(obj instanceof DeckOfCards)) return false;
+        return obj.hashCode() == this.hashCode();
     }
     @Override
     public String toString() {
@@ -117,5 +120,13 @@ public class DeckOfCards {
             if (this.amount-1!=i) sb.append(",");
         }
         return sb.toString();
+    }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 19 * hash + Arrays.deepHashCode(this.Cards);
+        hash = 19 * hash + this.amount;
+        hash = 19 * hash + (this.isShuffled ? 1 : 0);
+        return hash;
     }
 }
