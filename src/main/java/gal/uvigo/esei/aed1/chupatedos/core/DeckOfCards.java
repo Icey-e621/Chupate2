@@ -1,10 +1,10 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 
-import java.util.Random;
+import java.util.Collections;
+import java.util.Stack;
 
 public class DeckOfCards {
-    private Card[] Cards;
-    private int amount;
+    private Stack<Card> Cards;
     private boolean isShuffled;
 
     public DeckOfCards() {
@@ -14,36 +14,35 @@ public class DeckOfCards {
     }
 
     /**
-     * Fills the deck with all instances of {@link gal.uvigo.esei.aed1.chupatedos.core.Card#values()}
+     * Fills the deck with all instances of
+     * {@link gal.uvigo.esei.aed1.chupatedos.core.Card#values()}
      */
     public void fillDeck() {
         int numCards = Card.values().length;
         for (int i = 0; i < numCards; i++) {
-            this.Cards[i] = Card.values()[i];
+            this.Cards.push(Card.values()[i]);
         }
-        this.amount = numCards;
         this.isShuffled = false;
     }
+
     /**
-     * @param Times How many times the deck will be shuffled @throws IllegalArgumentException if it is not between 1-20
+     * @param Times How many times the deck will be shuffled @throws
+     *              IllegalArgumentException if it is not between 1-20
      */
     public void shuffleDeck(int Times) {
-        if (Times < 1 || Times > 20){
-            // Im using string builder in case someone wants to catch the error because they do something like ask the user
-            throw new IllegalArgumentException(new StringBuilder("Deck cannot be shuffled too many times, tried to shuffle: ").append(Times).toString());
+        if (Times < 1 || Times > 20) {
+            // Im using string builder in case someone wants to catch the error because they
+            // do something like ask the user
+            throw new IllegalArgumentException(
+                    new StringBuilder("Deck cannot be shuffled too many times, tried to shuffle: ").append(Times)
+                            .toString());
         }
-        for(int j = 0; j < Times;j++){
-            Random rnd = new Random();
-            for (int i = this.Cards.length - 1; i > 0; i--) {
-                int index = rnd.nextInt(i + 1);
-                // Simple swap
-                Card a = this.Cards[index];
-                this.Cards[index] = this.Cards[i];
-                this.Cards[i] = a;
-            }
+        for (int j = 0; j < Times; j++) {
+            Collections.shuffle(this.Cards);
         }
         this.isShuffled = true;
     }
+
     /**
      * Invokes {@link #shuffleDeck(int)} with Parameter Times set to 1
      */
@@ -51,64 +50,82 @@ public class DeckOfCards {
         this.shuffleDeck(1);
         this.isShuffled = true;
     }
+
     /**
-     * @return returns and errases card on top of the deck @throws IndexOutOfBoundsException if deck is empty
+     * @return returns and errases card on top of the deck @throws
+     *         IndexOutOfBoundsException if deck is empty
      */
-    public Card pop(){
-        if (this.isEmpty()){
+    public Card pop() {
+        if (this.isEmpty()) {
             throw new IndexOutOfBoundsException("DeckOfCards is empty");
         }
-        this.amount--;
-        return Cards[this.amount];
+        return this.Cards.pop();
     }
+
     /**
      * 
-     * @return shows card on top of the deck without errasing it from the Deck @throws IndexOutOfBoundsException if deck is empty
+     * @return shows card on top of the deck without errasing it from the
+     *         Deck @throws IndexOutOfBoundsException if deck is empty
      */
-    public Card peek(){
-        if (this.isEmpty()){
+    public Card peek() {
+        if (this.isEmpty()) {
             throw new IndexOutOfBoundsException("DeckOfCards is empty");
         }
-        return Cards[this.amount];
+        return Cards.peek();
     }
+
     /**
      * 
-     * @param card Card to be added to the top of the Deck @throws IndexOutOfBoundsException if the Deck can't hold more cards;
+     * @param card Card to be added to the top of the Deck @throws
+     *             IndexOutOfBoundsException if the Deck can't hold more cards;
      */
-    public void addCard(Card card){
-        if (this.amount >= Card.values().length){
-            throw new IndexOutOfBoundsException("DeckOfCards is full");
-        }
-        this.Cards[this.amount] = card;
-        this.amount++;
+    public void addCard(Card card) {
+        this.Cards.push(card);
     }
 
     // Here non commented and self explanatory methods
-    public boolean isEmpty(){
-        return this.amount==0;
+    public boolean isEmpty() {
+        return this.Cards.size()==0;
     }
-    public boolean isShuffled(){
+
+    public boolean isShuffled() {
         return this.isShuffled;
     }
 
-    //Overriden Methods
+    //Hash Codes :)
+    //Please dont use md5 here
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((Cards == null) ? 0 : Cards.hashCode());
+        result = prime * result + (isShuffled ? 1231 : 1237);
+        return result;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        DeckOfCards deck = (DeckOfCards) obj;
-        for(int i = 0;i<this.amount;i++){
-            if (this.Cards[i].getNumber() != deck.Cards[i].getNumber() || this.Cards[i].getSuit() != deck.Cards[i].getSuit()){
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        DeckOfCards other = (DeckOfCards) obj;
+        if (Cards == null) {
+            if (other.Cards != null)
                 return false;
-            }
-        }
+        } else if (!Cards.equals(other.Cards))
+            return false;
+        if (isShuffled != other.isShuffled)
+            return false;
         return true;
     }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("DeckOfCards contains {");
-        for(int i = 0;i<this.amount;i++){
-            sb.append(" ").append(this.Cards[i].toString());
-            if (this.amount-1!=i) sb.append(",");
-        }
+        StringBuilder sb = new StringBuilder("DeckOfCards: ").append(this.isShuffled ? "is shuffled " : "is not shuffled ");
+        sb.append(this.Cards);
         return sb.toString();
     }
 }
