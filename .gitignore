@@ -26,3 +26,5 @@ replay_pid*
 target/
 .vscode/java-formatter.xml
 .vscode/settings.json
+.vscode/java-formatter.xml
+.vscode/settings.json
