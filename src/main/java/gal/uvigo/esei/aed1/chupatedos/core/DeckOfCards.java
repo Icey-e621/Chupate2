@@ -1,12 +1,11 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
 
 /**
- * Class that simulates a Deck and internally acts as a Stack of the enum
- * {@link gal.uvigo.esei.aed1.chupatedos.core.Card}
+ * Class that simulates a Deck and internally acts as a Stack of the enum {@link gal.uvigo.esei.aed1.chupatedos.core.Card}
+ * @author Icey-e621
  */
 public class DeckOfCards {
     private Stack<Card> Cards;
