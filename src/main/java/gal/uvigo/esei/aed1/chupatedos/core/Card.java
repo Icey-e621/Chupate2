@@ -1,5 +1,8 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 
+/**
+ * Cartas baraja española
+ */
 public enum Card {
   AS_OROS(1, Suit.OROS),
   DOS_OROS(2, Suit.OROS),
@@ -49,11 +52,15 @@ public enum Card {
     this.number = number;
     this.suit = suit;
   }
-
+  /**
+   * Imprime el numero de la carta actual
+   */
   public int getNumber() {
     return this.number;
   }
-
+  /**
+   * Imprime el palo de la carta actual
+   */
   public Suit getSuit() {
     return this.suit;
   }

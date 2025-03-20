@@ -1,8 +1,13 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
 
+/**
+ * Class that simulates a Deck and internally acts as a Stack of the enum
+ * {@link gal.uvigo.esei.aed1.chupatedos.core.Card}
+ */
 public class DeckOfCards {
     private Stack<Card> Cards;
     private boolean isShuffled;
@@ -17,7 +22,7 @@ public class DeckOfCards {
      * Fills the deck with all instances of
      * {@link gal.uvigo.esei.aed1.chupatedos.core.Card#values()}
      */
-    public void fillDeck() {
+    public final void fillDeck() {
         int numCards = Card.values().length;
         for (int i = 0; i < numCards; i++) {
             this.Cards.push(Card.values()[i]);
@@ -46,7 +51,7 @@ public class DeckOfCards {
     /**
      * Invokes {@link #shuffleDeck(int)} with Parameter Times set to 1
      */
-    public void shuffleDeck() {
+    public final void shuffleDeck() {
         this.shuffleDeck(1);
         this.isShuffled = true;
     }
@@ -64,7 +69,7 @@ public class DeckOfCards {
 
     /**
      * 
-     * @return shows card on top of the deck without errasing it from the
+     * @return Shows card on top of the deck without errasing it from the
      *         Deck @throws IndexOutOfBoundsException if deck is empty
      */
     public Card peek() {
@@ -75,6 +80,7 @@ public class DeckOfCards {
     }
 
     /**
+     * Adds a card to the top of the deck
      * 
      * @param card Card to be added to the top of the Deck @throws
      *             IndexOutOfBoundsException if the Deck can't hold more cards;
@@ -83,17 +89,41 @@ public class DeckOfCards {
         this.Cards.push(card);
     }
 
+    /**
+     * Calls {@link #fillDeck()} followed by {@link #shuffleDeck(int)}
+     */
+    public void fillShuffle() {
+        this.fillDeck();
+        this.shuffleDeck(5);
+    }
+
+    /**
+     * Searches and removes a carrd from the deck
+     * 
+     * @param card {@link Card} To be removed from the Deck
+     * @return true if card had been found and errased, false if not.
+     */
+    public boolean SearchRemove(Card card) {
+        if (this.isEmpty())
+            return false;
+        boolean remove = false;
+
+        this.Cards.remove(card);
+
+        return remove;
+    }
+
     // Here non commented and self explanatory methods
     public boolean isEmpty() {
-        return this.Cards.size()==0;
+        return this.Cards.size() == 0;
     }
 
     public boolean isShuffled() {
         return this.isShuffled;
     }
-
-    //Hash Codes :)
-    //Please dont use md5 here
+    
+    // Hash Codes :)
+    // Please dont use md5 here
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -124,7 +154,8 @@ public class DeckOfCards {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("DeckOfCards: ").append(this.isShuffled ? "is shuffled " : "is not shuffled ");
+        StringBuilder sb = new StringBuilder("DeckOfCards: ")
+                .append(this.isShuffled ? "is shuffled " : "is not shuffled ");
         sb.append(this.Cards);
         return sb.toString();
     }
