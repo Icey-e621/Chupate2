@@ -13,6 +13,7 @@ public class DeckOfCards{
 
     public DeckOfCards() {
         this.isShuffled = false;
+        this.Cards = new Stack<Card>();
         this.fillDeck();
         this.shuffleDeck(3);
     }
