@@ -102,7 +102,7 @@ public class DeckOfCards {
      * @param card {@link Card} To be removed from the Deck
      * @return true if card had been found and errased, false if not.
      */
-    public boolean SearchRemove(Card card) {
+    public boolean searchRemove(Card card) {
         if (this.isEmpty())
             return false;
         boolean remove = false;
@@ -136,18 +136,24 @@ public class DeckOfCards {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
+
         if (obj == null)
             return false;
+
         if (getClass() != obj.getClass())
             return false;
+
         DeckOfCards other = (DeckOfCards) obj;
         if (Cards == null) {
             if (other.Cards != null)
                 return false;
+
         } else if (!Cards.equals(other.Cards))
             return false;
+
         if (isShuffled != other.isShuffled)
             return false;
+            
         return true;
     }
 
