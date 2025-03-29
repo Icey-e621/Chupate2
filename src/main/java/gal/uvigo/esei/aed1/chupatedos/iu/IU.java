@@ -32,6 +32,8 @@ public class IU {
         int res = 0;
         boolean error = false;
         do {
+            error = false;
+            System.out.println(mens);
             try {
                 res = Integer.parseInt(keyboard.nextLine());
             } catch (NumberFormatException e) {
