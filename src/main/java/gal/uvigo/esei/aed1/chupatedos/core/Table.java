@@ -42,6 +42,7 @@ public class Table {
     }
     public void setTopCard(Card card){
         this.topCard = card;
+        this.descartes.add(card);
     }
     public int getNumCardDeck(){
         return this.deck.size();
