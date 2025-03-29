@@ -7,7 +7,7 @@ import java.util.Stack;
  * Class that simulates a Deck and internally acts as a Stack of the enum {@link gal.uvigo.esei.aed1.chupatedos.core.Card}
  * @author Icey-e621
  */
-public class DeckOfCards {
+public class DeckOfCards{
     private Stack<Card> Cards;
     private boolean isShuffled;
 
@@ -115,6 +115,9 @@ public class DeckOfCards {
     // Here non commented and self explanatory methods
     public boolean isEmpty() {
         return this.Cards.size() == 0;
+    }
+    public int size(){
+        return this.Cards.size();
     }
 
     public boolean isShuffled() {
