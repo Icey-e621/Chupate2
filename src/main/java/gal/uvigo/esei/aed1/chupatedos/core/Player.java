@@ -46,4 +46,15 @@ public class Player {
 
         return candidateCards;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" has cards {");
+        for (Card card : this.cards){
+            sb.append(card).append(",");
+        }
+        sb.append("}");
+        return sb.toString();
+    }
 }

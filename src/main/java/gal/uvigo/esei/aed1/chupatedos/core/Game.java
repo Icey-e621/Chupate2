@@ -34,7 +34,7 @@ public class Game {
     public void play() {
 		this.crearJugadores();
 		for(int i = 0; i < this.numOfPlayers * 7; i++){
-            this.players[i % 7].addCard(this.table.takeCard());
+            this.players[i % numOfPlayers].addCard(this.table.takeCard());
         }
         this.table.setTopCard(this.table.takeCard());
         iu.displaymessage("La última carta jugada es: "+ this.table.getTopCard());

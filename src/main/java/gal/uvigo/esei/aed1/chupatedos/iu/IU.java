@@ -75,7 +75,7 @@ public class IU {
      */
 
     public Player readPlayerx(int pos) {
-        String name = readString("Nome do jugador" + pos);
+        String name = readString("Nome do jugador " + pos + ": ");
         Player nOne = new Player(name);
         return nOne;
     }
