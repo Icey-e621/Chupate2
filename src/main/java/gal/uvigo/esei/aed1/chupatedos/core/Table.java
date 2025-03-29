@@ -40,6 +40,12 @@ public class Table {
         }
         return deck.pop();
     }
+    public void setTopCard(Card card){
+        this.topCard = card;
+    }
+    public int getNumCardDeck(){
+        return this.deck.size();
+    }
     /**
      * Metodo para tirar una carta a la mesa
      * si la carta es nula lanza una excepcion
@@ -51,5 +57,8 @@ public class Table {
         }
         this.descartes.push(card);
         this.topCard = card;
+    }
+    public int getNumDescartes(){
+        return this.descartes.size();
     }
 }
