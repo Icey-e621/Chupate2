@@ -20,9 +20,10 @@ public class Game {
 	 * Metodo para crear jugadores
 	 */
     private void crearJugadores() {
-        this.numOfPlayers = iu.readNumber("Introduzca el número de jugadores.");
+        do{
+            this.numOfPlayers = iu.readInt("Introduzca el número de jugadores (min: 2 / max: 5): ");
+        }while(this.numOfPlayers < 2 || this.numOfPlayers > 5);
 		for(int i= 0; i<this.numOfPlayers; i++){
-			
 			this.players[i] = iu.readPlayerx(i);
 		}
     }
@@ -32,8 +33,15 @@ public class Game {
      */
     public void play() {
 		this.crearJugadores();
-		while () {
-			
-		}
+		for(int i = 0; i < this.numOfPlayers * 7; i++){
+            this.players[i % 7].addCard(this.table.takeCard());
+        }
+        this.table.setTopCard(this.table.takeCard());
+        iu.displaymessage("La última carta jugada es: "+ this.table.getTopCard());
+        iu.displaymessage("Quedan "+ this.table.getNumCardDeck() +" cartas en la baraja.");
+        iu.displaymessage("Quedan "+ this.table.getNumDescartes() +" cartas en la pila de descartes.");
+        for(int i = 0; i < this.numOfPlayers; i++){
+            iu.displaymessage("Jugador "+ (i+1) + ": " +  this.players[i]);
+        }
     }
 }

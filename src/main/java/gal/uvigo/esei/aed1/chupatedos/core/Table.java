@@ -16,20 +16,6 @@ public class Table {
         this.topCard = null;
     }
 
-<<<<<<< HEAD
-public Table(){
-
-}
-
-private int playedCard(){
-    return 0;
-}
-    
-
-
-    
-}
-=======
     /**
      *  Metodo para obtener la carta de arriba de la mesa
      *  @return devuelve la carta de arriba de la mesa
@@ -49,10 +35,16 @@ private int playedCard(){
     public Card takeCard() {
         if (this.deck.isEmpty()) {
             while(!descartes.isEmpty()) {
-                this.deck.addCard(this.descartes.pop())
+                this.deck.addCard(this.descartes.pop());
             }
         }
         return deck.pop();
+    }
+    public void setTopCard(Card card){
+        this.topCard = card;
+    }
+    public int getNumCardDeck(){
+        return this.deck.size();
     }
     /**
      * Metodo para tirar una carta a la mesa
@@ -66,4 +58,7 @@ private int playedCard(){
         this.descartes.push(card);
         this.topCard = card;
     }
->>>>>>> 3a656025299db023bf027363829bd5afc09ec101
+    public int getNumDescartes(){
+        return this.descartes.size();
+    }
+}
