@@ -7,6 +7,7 @@ public class Game {
     private final IU iu;
     private Player[] players;
     private int numOfPlayers;
+	private Table table;
 
     public Game(IU iu) {
         this.iu = iu;
@@ -35,7 +36,9 @@ public class Game {
 		boolean finPartida = false;
 		while (!finPartida) {
 			this.players[turno].turno();
-
+			if(table.playedCard() == 2){
+				
+			}
 		}
     }
 }
