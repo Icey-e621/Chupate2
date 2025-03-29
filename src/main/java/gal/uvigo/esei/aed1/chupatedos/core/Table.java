@@ -35,7 +35,7 @@ public class Table {
     public Card takeCard() {
         if (this.deck.isEmpty()) {
             while(!descartes.isEmpty()) {
-                this.deck.addCard(this.descartes.pop())
+                this.deck.addCard(this.descartes.pop());
             }
         }
         return deck.pop();
@@ -52,3 +52,4 @@ public class Table {
         this.descartes.push(card);
         this.topCard = card;
     }
+}
