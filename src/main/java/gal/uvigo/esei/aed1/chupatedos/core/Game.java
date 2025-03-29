@@ -8,11 +8,13 @@ public class Game {
     private Player[] players;
     private int numOfPlayers;
 	private Table table;
+    private DeckOfCards deck;
 
     public Game(IU iu) {
         this.iu = iu;
         this.players = new Player[5];
-
+        this.deck = new DeckOfCards();
+        this.table = new Table (this.deck);
     }
 	/**
 	 * Metodo para crear jugadores
@@ -21,7 +23,7 @@ public class Game {
         this.numOfPlayers = iu.readNumber("Introduzca el número de jugadores.");
 		for(int i= 0; i<this.numOfPlayers; i++){
 			
-			this.players[i]=new Player(new DeckOfCards(),iu.readString("Nombre del jugador "+ (i+1) +": "));
+			this.players[i] = iu.readPlayerx(i);
 		}
     }
 
@@ -30,15 +32,8 @@ public class Game {
      */
     public void play() {
 		this.crearJugadores();
-		int turno = 0;
-		boolean salio7 = false;
-		boolean salio2 = false;
-		boolean finPartida = false;
-		while (!finPartida) {
-			this.players[turno].turno();
-			if(table.playedCard() == 2){
-				
-			}
+		while () {
+			
 		}
     }
 }
