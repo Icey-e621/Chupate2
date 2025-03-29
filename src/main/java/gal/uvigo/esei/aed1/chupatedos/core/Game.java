@@ -14,7 +14,6 @@ public class Game {
   * Metodo principal para jugar
   */
   public void play() {
-    System.out.println("hi");
 
     
 
