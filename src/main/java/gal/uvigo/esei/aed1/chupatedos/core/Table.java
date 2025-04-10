@@ -36,6 +36,7 @@ public class Table {
         if (this.deck.isEmpty()) {
             while(!descartes.isEmpty()) {
                 this.deck.addCard(this.descartes.pop());
+this.deck.shuffle(5);
             }
         }
         return deck.pop();
