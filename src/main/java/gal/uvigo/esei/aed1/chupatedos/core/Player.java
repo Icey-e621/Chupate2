@@ -71,10 +71,6 @@ public class Player {
         return candidateCards;
     }
 
-    /**
-     * Returns 
-     * @return
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
