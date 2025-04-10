@@ -2,18 +2,14 @@ package gal.uvigo.esei.aed1.chupatedos.core;
 
 import java.util.Stack;
 
-public class Table {
-    private DeckOfCards deck;
+public class Table {}
     private Stack<Card> descartes;
-    private Card topCard;
     /**
      *  Constructor for the Table class
      *  Initializes the dek and players stacks
      */
-    public Table(DeckOfCards deck) {
-        this.deck = deck;
+    public Table() {
         this.descartes = new Stack<Card>();
-        this.topCard = null;
     }
 
     /**
@@ -21,10 +17,10 @@ public class Table {
      *  @return devuelve la carta de arriba de la mesa
      */
     public Card getTopCard() {
-        if(this.topCard == null) {
+        if(descartes.isEmpty()) {
             throw new IllegalStateException("No hay carta en la mesa");
         }
-        return this.topCard;
+        return descartes.peek();
     }
      
     /** 
@@ -36,17 +32,9 @@ public class Table {
         if (this.deck.isEmpty()) {
             while(!descartes.isEmpty()) {
                 this.deck.addCard(this.descartes.pop());
-                this.deck.shuffleDeck();
             }
         }
         return deck.pop();
-    }
-    public void setTopCard(Card card){
-        this.topCard = card;
-        this.descartes.add(card);
-    }
-    public int getNumCardDeck(){
-        return this.deck.size();
     }
     /**
      * Metodo para tirar una carta a la mesa
@@ -59,8 +47,5 @@ public class Table {
         }
         this.descartes.push(card);
         this.topCard = card;
-    }
-    public int getNumDescartes(){
-        return this.descartes.size();
     }
 }

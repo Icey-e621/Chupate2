@@ -1,10 +1,17 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 import java.util.ArrayList;
 
+/**
+ *@author Lucía 
+*/
 public class Player {
     private String name;
     private final ArrayList<Card> cards;
 
+    /**
+     * Player's constructor, initializes a player with a name and his cards
+     * @param name
+     */
     public Player(String name) {
         this.name = name;
         this.cards = new ArrayList<>();
@@ -15,6 +22,10 @@ public class Player {
         return name;
     }
 
+    /**
+     * Set player's name
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
@@ -23,10 +34,19 @@ public class Player {
         return cards;
     }
 
+    /**
+     * Adds a card to the player's array of cards
+     * @param card
+     */
     public void addCard(Card card) {
         cards.add(card);
     }
 
+    /**
+     * * Returns the options of cards that a player can choose to play, based by their number
+     * @param tableCard
+     * @return candidateCards
+     */
     public ArrayList<Card> availableCardsToPlayByNumber(Card tableCard) {
         ArrayList<Card> candidateCards = new ArrayList<>(); // if it is the same number
 
@@ -37,6 +57,11 @@ public class Player {
         return candidateCards;
     }
 
+    /**
+     * Returns the options of cards that a player can choose to play, based by their suit
+     * @param tableCard
+     * @return candidateCards
+     */
     public ArrayList<Card> availableCardsToPlayBySuit(Card tableCard) {
         ArrayList<Card> candidateCards = new ArrayList<>(); // if it is the same suit
 
