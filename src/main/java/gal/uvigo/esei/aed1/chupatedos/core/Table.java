@@ -2,7 +2,7 @@ package gal.uvigo.esei.aed1.chupatedos.core;
 
 import java.util.Stack;
 
-public class Table {}
+public class Table {
     private Stack<Card> descartes;
     /**
      *  Constructor for the Table class

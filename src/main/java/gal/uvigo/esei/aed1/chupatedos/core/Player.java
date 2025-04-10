@@ -6,7 +6,7 @@ import java.util.ArrayList;
 */
 public class Player {
     private String name;
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     /**
      * Player's constructor, initializes a player with a name and his cards
@@ -17,10 +17,7 @@ public class Player {
         this.cards = new ArrayList<>();
     }
 
-    /**
-     * Returns player's name
-     * @return name
-     */
+
     public String getName() {
         return name;
     }
@@ -31,6 +28,10 @@ public class Player {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
     /**
