@@ -35,14 +35,6 @@ public class Player {
     }
 
     /**
-     * Shows the array of cards
-     */
-    public void getCards() {
-        for (Card card : cards)
-            System.out.println(card);
-    }
-
-    /**
      * Adds a card to the player's array of cards
      * @param card
      */
