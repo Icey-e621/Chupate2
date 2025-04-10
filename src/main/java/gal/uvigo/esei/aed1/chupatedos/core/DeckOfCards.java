@@ -15,7 +15,7 @@ public class DeckOfCards{
         this.isShuffled = false;
         this.Cards = new Stack<Card>();
         this.fillDeck();
-        this.shuffleDeck(3);
+        this.shuffleDeck();
     }
 
     /**
@@ -31,28 +31,10 @@ public class DeckOfCards{
     }
 
     /**
-     * @param Times How many times the deck will be shuffled @throws
-     *              IllegalArgumentException if it is not between 1-20
-     */
-    public void shuffleDeck(int Times) {
-        if (Times < 1 || Times > 20) {
-            // Im using string builder in case someone wants to catch the error because they
-            // do something like ask the user
-            throw new IllegalArgumentException(
-                    new StringBuilder("Deck cannot be shuffled too many times, tried to shuffle: ").append(Times)
-                            .toString());
-        }
-        for (int j = 0; j < Times; j++) {
-            Collections.shuffle(this.Cards);
-        }
-        this.isShuffled = true;
-    }
-
-    /**
      * Invokes {@link #shuffleDeck(int)} with Parameter Times set to 1
      */
     public final void shuffleDeck() {
-        this.shuffleDeck(1);
+        Collections.shuffle(this.Cards);
         this.isShuffled = true;
     }
 
@@ -94,24 +76,9 @@ public class DeckOfCards{
      */
     public void fillShuffle() {
         this.fillDeck();
-        this.shuffleDeck(5);
+        this.shuffleDeck();
     }
-
-    /**
-     * Searches and removes a carrd from the deck
-     * 
-     * @param card {@link Card} To be removed from the Deck
-     * @return true if card had been found and errased, false if not.
-     */
-    public boolean searchRemove(Card card) {
-        if (this.isEmpty())
-            return false;
-        boolean remove = false;
-
-        this.Cards.remove(card);
-
-        return remove;
-    }
+    
 
     // Here non commented and self explanatory methods
     public boolean isEmpty() {
