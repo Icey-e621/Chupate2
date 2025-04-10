@@ -11,7 +11,17 @@ public class Table {
     public Table() {
         this.descartes = new Stack<Card>();
     }
-
+    /**
+     * Metodo para recibir una carta en la mesa
+     * si la carta es nula lanza una excepcion
+     * @param card
+     */
+    public void receiveCard(Card card){
+        if(card == null) {
+            throw new IllegalArgumentException("La carta no puede ser nula");
+        }
+        this.descartes.push(card);
+    }
     /**
      *  Metodo para obtener la carta de arriba de la mesa
      *  @return devuelve la carta de arriba de la mesa
