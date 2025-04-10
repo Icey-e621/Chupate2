@@ -32,4 +32,11 @@ public class Table {
         }
         return descartes.peek();
     }
+    /**
+     * 
+     * @return numero cartas que hay en deacartes
+     */
+    public int sizeDescartes() {
+        return this.descartes.size();
+    }
 }
