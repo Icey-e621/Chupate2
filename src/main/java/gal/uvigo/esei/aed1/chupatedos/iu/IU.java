@@ -12,9 +12,10 @@ public class IU {
     public IU() {
         keyboard = new Scanner(System.in);
     }
-   
+
     /**
-     * muestra un mensaje por pantalla // la cosa Mas Reverendamente inutil que he visto y eso que yo existo : v
+     * muestra un mensaje por pantalla // la cosa Mas Reverendamente inutil que
+     * he visto y eso que yo existo : v
      *
      * @param msg el mensaje a mostrar
      */
@@ -23,13 +24,14 @@ public class IU {
     }
 
     /**
-     * devuelve el numero leido 
+     * devuelve el numero leido
      *
      * @param mesg el mensaje a mostrar
      * @return el numero recogido
      */
     public int readInt(String mens) throws NumberFormatException {
         int res = 0;
+
         boolean error = false;
         do {
             error = false;
@@ -57,14 +59,25 @@ public class IU {
     }
 
     /**
-     * Lee un jugador por teclado
+     * Lee los nombres de jugadores por teclado
+     * nota la cantidad de jugadores se con con la longitud del array para otras funciones
      *
-     * @return el jugador leido
+     * @return Un array de jugadores
      */
-    public Player readPlayer() {
-        String name = readString("Nome deste jugador");
-        Player nOne = new Player(name);
-        return nOne;
+    public String[] readPlayers() {
+        
+        int Cantidad = 0;
+        do {
+            Cantidad = readInt("\n numero de jugadores <2-5>  ");//lee la cantidad hasta que sea correcta
+        } while (Cantidad < 2 || Cantidad > 5);
+        String Jugadores[] = new String[Cantidad];
+
+        
+        for (int i = 0; i < Cantidad + 1; i++) {
+            Jugadores[Cantidad] = readString("\nJuador" + Cantidad + ":"); //pregunta los nomres y los almacena en Jugadores
+        }
+
+        return Jugadores;
     }
 
     /**
@@ -73,7 +86,6 @@ public class IU {
      * @param pos el numero del turno que este jug es
      * @return el string leido
      */
-
     public Player readPlayerx(int pos) {
         String name = readString("Nome do jugador " + pos + ": ");
         Player nOne = new Player(name);
@@ -85,8 +97,7 @@ public class IU {
      *
      * @return Deck
      */
-
-    public DeckOfCards makeDeckOfCards(){
+    public DeckOfCards makeDeckOfCards() {
         DeckOfCards deck = new DeckOfCards();
         return deck;
     }
@@ -96,10 +107,9 @@ public class IU {
      *
      * @return Deck
      */
-
-    public DeckOfCards makeEmptyDeckOfCards(){
+    public DeckOfCards makeEmptyDeckOfCards() {
         DeckOfCards emptyDeck = new DeckOfCards();
-        while (!emptyDeck.isEmpty()){
+        while (!emptyDeck.isEmpty()) {
             emptyDeck.pop();
         }
         return emptyDeck;
