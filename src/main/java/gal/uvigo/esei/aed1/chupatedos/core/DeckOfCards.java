@@ -8,7 +8,7 @@ import java.util.Stack;
  * @author Icey-e621
  */
 public class DeckOfCards{
-    private Stack<Card> Cards;
+    private final Stack<Card> Cards;
     private boolean isShuffled;
 
     public DeckOfCards() {
