@@ -11,7 +11,17 @@ public class Table {
     public Table() {
         this.descartes = new Stack<Card>();
     }
-
+    /**
+     * Metodo para recibir una carta en la mesa
+     * si la carta es nula lanza una excepcion
+     * @param card
+     */
+    public void receiveCard(Card card){
+        if(card == null) {
+            throw new IllegalArgumentException("La carta no puede ser nula");
+        }
+        this.descartes.push(card);
+    }
     /**
      *  Metodo para obtener la carta de arriba de la mesa
      *  @return devuelve la carta de arriba de la mesa
@@ -22,30 +32,11 @@ public class Table {
         }
         return descartes.peek();
     }
-     
-    /** 
-     * Metodo para coger una carta de la baraja
-     * si la baraja esta vacia la llena y la mezcla
-     * @return la carta cogida de la baraja
-     */
-    public Card takeCard() {
-        if (this.deck.isEmpty()) {
-            while(!descartes.isEmpty()) {
-                this.deck.addCard(this.descartes.pop());
-            }
-        }
-        return deck.pop();
-    }
     /**
-     * Metodo para tirar una carta a la mesa
-     * si la carta es nula lanza una excepcion
-     * @param card
+     * 
+     * @return numero cartas que hay en deacartes
      */
-    public void throwCard(Card card) {
-        if (card == null) {
-            throw new IllegalArgumentException("Card no puede ser nula");
-        }
-        this.descartes.push(card);
-        this.topCard = card;
+    public int sizeDescartes() {
+        return this.descartes.size();
     }
 }
