@@ -3,12 +3,13 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private ArrayList<Card> cards;
+    private final ArrayList<Card> cards;
 
     public Player(String name) {
         this.name = name;
         this.cards = new ArrayList<>();
     }
+
 
     public String getName() {
         return name;
@@ -18,9 +19,8 @@ public class Player {
         this.name = name;
     }
 
-    public void getCards() {
-        for (Card card : cards)
-            System.out.println(card);
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
     public void addCard(Card card) {
