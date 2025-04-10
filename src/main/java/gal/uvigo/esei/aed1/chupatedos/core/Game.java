@@ -5,7 +5,7 @@ import gal.uvigo.esei.aed1.chupatedos.iu.IU;
 public class Game {
 
     private final IU iu;
-    private final Player[] players;
+    private Player[] players;
     private int numOfPlayers;
     private final Table table;
     private DeckOfCards deck;
@@ -14,7 +14,7 @@ public class Game {
         this.iu = iu;
         this.players = new Player[5];
         this.deck = new DeckOfCards();
-        this.table = new Table(this.deck);
+        this.table = new Table();
     }
 
     /**
@@ -35,12 +35,11 @@ public class Game {
     public void play() {
         this.crearJugadores();
         for (int i = 0; i < this.numOfPlayers * 7; i++) {
-            this.players[i % numOfPlayers].addCard(this.table.takeCard());
+            this.players[i % numOfPlayers].addCard(this.deck.pop());
         }
-        this.table.setTopCard(this.table.takeCard());
         iu.displaymessage("La última carta jugada es: " + this.table.getTopCard());
-        iu.displaymessage("Quedan " + this.deck + " cartas en la baraja.");
-        iu.displaymessage("Quedan " + this.table.getNumDescartes() + " cartas en la pila de descartes.");
+        iu.displaymessage("Quedan " + this.deck.size() + " cartas en la baraja.");
+        iu.displaymessage("Quedan " + this.table. sizeDescartes() + " cartas en la pila de descartes.");
         for (int i = 0; i < this.numOfPlayers; i++) {
             iu.displaymessage("Jugador " + (i + 1) + ": " + this.players[i]);
         }
