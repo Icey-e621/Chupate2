@@ -131,8 +131,7 @@ public class Game {
                     this.players[this.currentPlayer].addCard(nextCard);
                 }
             }
-            if (!seHaGanado) this.currentPlayer = this.siguienteJugador();
-            iu.displaymessage("\n =======\tSiguiente turno\t=======");
+            if (!seHaGanado){this.currentPlayer = this.siguienteJugador();iu.displaymessage("\n =======\tSiguiente turno\t=======");}
         }
         iu.displaymessage("\n\nEl jugador: " + this.players[this.currentPlayer].getName() + " Ha ganado ");
     }
