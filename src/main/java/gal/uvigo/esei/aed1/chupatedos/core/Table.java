@@ -11,6 +11,10 @@ public class Table {
     public Table() {
         this.descartes = new Stack<Card>();
     }
+    
+    public Card popCard(){
+        return this.descartes.pop();
+    }
     /**
      * Metodo para recibir una carta en la mesa
      * si la carta es nula lanza una excepcion

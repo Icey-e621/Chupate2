@@ -17,7 +17,6 @@ public class Player {
         this.cards = new ArrayList<>();
     }
 
-
     public String getName() {
         return name;
     }
@@ -40,6 +39,14 @@ public class Player {
      */
     public void addCard(Card card) {
         cards.add(card);
+    }
+    /**
+     * 
+     * @param card to be removed
+     * @return true if item is contained
+     */
+    public boolean removeCard(Card card){
+        return this.cards.remove(card);
     }
 
     /**
@@ -75,7 +82,7 @@ public class Player {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name).append(" has cards {");
+        sb.append(name).append(", tiene las cartas {");
         for (Card card : this.cards){
             sb.append(card).append(",");
         }
