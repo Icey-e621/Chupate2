@@ -84,8 +84,10 @@ public class Player {
         StringBuilder sb = new StringBuilder();
         sb.append(name).append(", tiene las cartas {");
         for (Card card : this.cards){
-            sb.append(card).append(",");
+            sb.append(card);
+            sb.append(",");
         }
+        sb.deleteCharAt(sb.length()-1);
         sb.append("}");
         return sb.toString();
     }

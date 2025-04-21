@@ -30,11 +30,12 @@ public class Game {
      * Metodo para crear jugadores
      */
     private void crearJugadores() {
+        String[] playerstempStrings = iu.readPlayers();
         do {
-            this.numOfPlayers = iu.readInt("Introduzca el número de jugadores (min: 2 / max: 5): ");
+            this.numOfPlayers = playerstempStrings.length;
         } while (this.numOfPlayers < 2 || this.numOfPlayers > 5);
         for (int i = 0; i < this.numOfPlayers; i++) {
-            this.players[i] = iu.readPlayerx(i);
+            this.players[i] = new Player(playerstempStrings[i]);
         }
     }
 
