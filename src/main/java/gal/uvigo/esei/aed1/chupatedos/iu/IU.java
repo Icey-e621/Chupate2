@@ -68,13 +68,22 @@ public class IU {
         
         int Cantidad = 0;
         do {
-            Cantidad = readInt("\n numero de jugadores <2-5>  ");//lee la cantidad hasta que sea correcta
+            Cantidad = this.readInt("Introduzca el número de jugadores (min: 2 / max: 5): ");//lee la cantidad hasta que sea correcta
         } while (Cantidad < 2 || Cantidad > 5);
         String Jugadores[] = new String[Cantidad];
 
         
-        for (int i = 0; i < Cantidad + 1; i++) {
-            Jugadores[Cantidad] = readString("\nJuador" + Cantidad + ":"); //pregunta los nomres y los almacena en Jugadores
+        for (int i = 0; i < Cantidad; i++) {
+            do{
+                Jugadores[i] = readString("Nombre del jugador " + i + ": "); //pregunta los nomres y los almacena en Jugadores
+            }while (Jugadores[i].trim() == "");   
+            for (int j = 0; j<i;j++){
+                if (Jugadores[i].equals(Jugadores[j])){
+                    Jugadores[i] += " (";
+                    Jugadores[i] += i+1;
+                    Jugadores[i] += ")";
+                }
+            }
         }
 
         return Jugadores;
