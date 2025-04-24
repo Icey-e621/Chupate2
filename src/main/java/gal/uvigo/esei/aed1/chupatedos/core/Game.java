@@ -21,7 +21,6 @@ public class Game {
         this.seHaGanado = false;
         this.antiHorario = true;
         this.iu = iu;
-        this.players = new Player[5];
         this.deck = new DeckOfCards();
         this.table = new Table();
     }
@@ -31,12 +30,14 @@ public class Game {
      */
     private void crearJugadores() {
         String[] playerstempStrings = iu.readPlayers();
-        do {
-            this.numOfPlayers = playerstempStrings.length;
-        } while (this.numOfPlayers < 2 || this.numOfPlayers > 5);
+        this.numOfPlayers = playerstempStrings.length;
+        this.players = new Player[this.numOfPlayers];
         for (int i = 0; i < this.numOfPlayers; i++) {
             this.players[i] = new Player(playerstempStrings[i]);
         }
+    }
+    private void shuffleDeck(){
+        this.deck.shuffleDeck();
     }
 
     private void estadoMesa() {
@@ -52,9 +53,19 @@ public class Game {
         return estoHaceFalta;
     }
     private int siguienteJugador(){
-        return (antiHorario) ? (this.currentPlayer + 1 >= this.numOfPlayers) ? 0 : this.currentPlayer + 1
-        : (this.currentPlayer - 1 < 0) ? this.numOfPlayers-1 : this.currentPlayer - 1;
+        if (antiHorario){
+            if (this.currentPlayer + 1 >= this.numOfPlayers) return 0;
+            return this.currentPlayer + 1;
+        }
+        else{
+            if (this.currentPlayer - 1 < 0) return this.numOfPlayers-1;
+        }
+        return this.currentPlayer - 1;
     }
+        /* LONG LIVE TERNARY HELL 
+        return (antiHorario) ? (this.currentPlayer + 1 >= this.numOfPlayers) ? 0 : this.currentPlayer + 1 : (this.currentPlayer - 1 < 0) ? this.numOfPlayers-1 : this.currentPlayer - 1;
+         */
+    
     private Card robarCarta(){
         Card aRobar = this.deck.pop();
         if (this.deck.isEmpty()){
@@ -88,6 +99,7 @@ public class Game {
      */
     public void play() {
         this.crearJugadores();
+        this.shuffleDeck();
         for (int i = 0; i < this.numOfPlayers * 7; i++) {
             this.players[i % numOfPlayers].addCard(this.deck.pop());
         }

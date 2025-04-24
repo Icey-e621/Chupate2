@@ -77,6 +77,7 @@ public class IU {
             do{
                 Jugadores[i] = readString("Nombre del jugador " + i + ": "); //pregunta los nomres y los almacena en Jugadores
             }while (Jugadores[i].trim() == "");   
+
             for (int j = 0; j<i;j++){
                 if (Jugadores[i].equals(Jugadores[j])){
                     Jugadores[i] += " (";

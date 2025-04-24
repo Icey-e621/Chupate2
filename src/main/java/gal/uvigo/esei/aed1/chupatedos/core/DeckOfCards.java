@@ -15,7 +15,6 @@ public class DeckOfCards{
         this.isShuffled = false;
         this.Cards = new Stack<Card>();
         this.fillDeck();
-        this.shuffleDeck();
     }
 
     /**
