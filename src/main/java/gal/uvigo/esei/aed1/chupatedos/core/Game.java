@@ -142,6 +142,7 @@ public class Game {
                     this.jugarCarta(nextCard);
                 }else{
                     this.players[this.currentPlayer].addCard(nextCard);
+                    iu.displaymessage("No puedes jugar ninguna carta, pierdes el turno");
                 }
             }
             if (!seHaGanado){this.currentPlayer = this.siguienteJugador();iu.displaymessage("\n =======\tSiguiente turno\t=======");}
