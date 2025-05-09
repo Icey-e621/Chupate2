@@ -1,16 +1,22 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
-
 import java.util.Collections;
 import java.util.Stack;
 
 /**
- * Class that simulates a Deck and internally acts as a Stack of the enum {@link gal.uvigo.esei.aed1.chupatedos.core.Card}
- * @author Icey-e621
+ * La clase baraja de cartas (DeckOfCards) simula una baraja de cartas e 
+ * internamente actúa como una pila de enumerados (enum).
+ * @author Chupate2_AE
+ * @version 10/05/2025
  */
-public class DeckOfCards{
+ public class DeckOfCards{
     private final Stack<Card> Cards;
     private boolean isShuffled;
 
+    /**
+     * Constructor de la clase baraja de cartas (DeckOfCards).
+     * Inicializa el atributo isShuffled a falso (false), una pila de cartas (Card) vacía y 
+     * llama a un método que la rellena (fillDeck()).
+     */
     public DeckOfCards() {
         this.isShuffled = false;
         this.Cards = new Stack<Card>();
@@ -18,19 +24,20 @@ public class DeckOfCards{
     }
 
     /**
-     * Fills the deck with all instances of
-     * {@link gal.uvigo.esei.aed1.chupatedos.core.Card#values()}
+     * Añade todas las cartas (Card) necesarias para la partida a la baraja (pila) de cartas.
      */
     public final void fillDeck() {
         int numCards = Card.values().length;
-        for (int i = 0; i < numCards; i++) {
+
+        for (int i = 0; i < numCards; i++)
             this.Cards.push(Card.values()[i]);
-        }
+
         this.isShuffled = false;
     }
 
     /**
-     * Invokes {@link #shuffleDeck(int)} with Parameter Times set to 1
+     * Mezcla las cartas de la baraja (pila) y 
+     * al terminar modifica el atributo isShuffled a verdadero (true).
      */
     public final void shuffleDeck() {
         Collections.shuffle(this.Cards);
@@ -38,91 +45,95 @@ public class DeckOfCards{
     }
 
     /**
-     * @return returns and errases card on top of the deck @throws
-     *         IndexOutOfBoundsException if deck is empty
+     * Elimina y devuelve (mostrándo) la carta (Card) en la cima de la baraja (pila).
+     * @return carta (Card) en la cima de la baraja (pila)
+     * @throws IndexOutOfBoundsException si la baraja (pila) está vacía
      */
     public Card pop() {
-        if (this.isEmpty()) {
+        if (this.isEmpty())
             throw new IndexOutOfBoundsException("DeckOfCards is empty");
-        }
         return this.Cards.pop();
     }
 
     /**
-     * 
-     * @return Shows card on top of the deck without errasing it from the
-     *         Deck @throws IndexOutOfBoundsException if deck is empty
+     * Muestra la carta (Card) en la cima de la baraja (pila) evitando eliminarla de esta.
+     * @return carta (Card) en la cima de la baraja (pila)
+     * @throws IndexOutOfBoundsException si la baraja (pila) está vacía.
      */
     public Card peek() {
-        if (this.isEmpty()) {
+        if (this.isEmpty()) 
             throw new IndexOutOfBoundsException("DeckOfCards is empty");
-        }
         return Cards.peek();
     }
 
     /**
-     * Adds a card to the top of the deck
-     * 
-     * @param card Card to be added to the top of the Deck @throws
-     *             IndexOutOfBoundsException if the Deck can't hold more cards;
+     * Añade una carta a la cima de la baraja (pila) de cartas.
+     * @param card carta (Card) que será añadida a la cima de la baraja (pila)
+     * @throws IndexOutOfBoundsException si la baraja (pila) alcanza su capacidad máxima
      */
     public void addCard(Card card) {
         this.Cards.push(card);
     }
 
     /**
-     * Calls {@link #fillDeck()} followed by {@link #shuffleDeck(int)}
+     * Invoca dos métodos que permiten comenzar la partida,
+     * ya que uno añade todas las cartas necesarias a la baraja (pila) y
+     * el otro las baraja.
      */
     public void fillShuffle() {
         this.fillDeck();
         this.shuffleDeck();
     }
     
-
-    // Here non commented and self explanatory methods
+    /**
+     * Comprueba si la baraja (pila) de cartas está vacía o no.
+     * @return verdadero (true) si la baraja (pila) está vacía o falso (false) en caso contrario
+     */
     public boolean isEmpty() {
         return this.Cards.size() == 0;
     }
+
+    /**
+     * Devuelve la cantidad de cartas que se encuentran en la pila.
+     * @return número de cartas en la pila.
+     */
     public int size(){
         return this.Cards.size();
     }
 
+    /**
+     * Comprueba si se mezclaron las cartas de la baraja (pila).
+     * @return verdadero (true) si se mezclaron las cartas o falso (false) en caso contrario
+     */
     public boolean isShuffled() {
         return this.isShuffled;
     }
-    
-    // Hash Codes :)
-    // Please dont use md5 here
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        
         result = prime * result + ((Cards == null) ? 0 : Cards.hashCode());
         result = prime * result + (isShuffled ? 1231 : 1237);
+        
         return result;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-
-        if (obj == null)
-            return false;
-
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
 
         DeckOfCards other = (DeckOfCards) obj;
-        if (Cards == null) {
-            if (other.Cards != null)
-                return false;
+        
+        if (Cards == null)
+            if (other.Cards != null) return false;
 
-        } else if (!Cards.equals(other.Cards))
-            return false;
+        else if (!Cards.equals(other.Cards)) return false;
 
-        if (isShuffled != other.isShuffled)
-            return false;
+        if (isShuffled != other.isShuffled) return false;
             
         return true;
     }
