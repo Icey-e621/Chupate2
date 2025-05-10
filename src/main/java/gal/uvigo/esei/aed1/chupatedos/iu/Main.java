@@ -6,7 +6,6 @@ import gal.uvigo.esei.aed1.chupatedos.core.Game;
  * La clase principal (Main) representa el punto de inicio de la partida.
  * Se encarga de iniciar el juego en si.
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public class Main {
   

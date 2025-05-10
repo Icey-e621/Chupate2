@@ -5,7 +5,6 @@ import gal.uvigo.esei.aed1.chupatedos.iu.IU;
 /**
  * La clase juego (Game) simula una partida.
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public class Game {
     private final IU iu;
@@ -19,6 +18,7 @@ public class Game {
 
     /**
      * Constructor de la clase juego (Game).
+     * Inicializa las variables de la interfaz de usuario (IU).
      * @param iu interfaz de usuario que se inicializará
      */
     public Game(IU iu) {

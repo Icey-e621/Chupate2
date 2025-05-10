@@ -1,14 +1,12 @@
 package gal.uvigo.esei.aed1.chupatedos.iu;
 import java.util.Scanner;
 import gal.uvigo.esei.aed1.chupatedos.core.DeckOfCards;
-import gal.uvigo.esei.aed1.chupatedos.core.Player;
 
 /**
- * La clase interfaz de usuario (IU) representa al intermediario (Se aplica abstracción) 
+ * La clase interfaz de usuario (IU) representa al intermediario (se aplica abstracción) 
  * de la partida, entre la lógica interna (implementación) y los jugadores.
  * Se encarga de mostrar mensajes por pantalla y de recibir información.
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public class IU {
     private final Scanner keyboard;
@@ -31,7 +29,7 @@ public class IU {
     /**
      * Muestra por pantalla el mensaje recibido como parámetro
      * @param message mensaje que se quiere mostrar
-     * @return el numero recogido
+     * @return el número recogido
      * @throws NumberFormatException si el número que se introduce no cumple con el formato
      */
     public int readInt(String menssage) throws NumberFormatException {
@@ -78,7 +76,7 @@ public class IU {
         int cantidad = 0;
         
         do {
-            cantidad = this.readInt("Introduzca el número de jugadores (mín: 2 / máx: 5): ");
+            cantidad = this.readInt("Introduzca el numero de jugadores (min: 2 / max: 5): ");
         } while (cantidad < 2 || cantidad > 5);
         
         String[] jugadores = new String[cantidad];
@@ -98,17 +96,6 @@ public class IU {
         }
 
         return jugadores;
-    }
-
-    /**
-     * Muestra por pantalla el nombre del jugador que se encuentra en la posición
-     * recibida como parámetro.
-     * @param position número del turno que es este jugador
-     * @return ristra de caracteres recibidos
-     */
-    public Player readGivenPlayer(int position) {
-        String name = readString("Nombre del jugador " + position + ": ");
-        return new Player(name);
     }
 
     /**

@@ -3,7 +3,6 @@ package gal.uvigo.esei.aed1.chupatedos.core;
 /**
  * La clase carta (Card) representa las cartas de una baraja española.
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public enum Card {
   AS_OROS(1, Suit.OROS),
@@ -52,7 +51,7 @@ public enum Card {
 
   /**
    * Constructor de la clase carta (Card).
-   * Inicializa una el número y el palo de una carta con los parámetros recibidos.
+   * Inicializa el número y el palo de una carta con los parámetros recibidos.
    * @param number número de la carta
    * @param suit   palo de la carta
    */

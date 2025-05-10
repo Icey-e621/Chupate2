@@ -1,12 +1,14 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.Stack;
+
+import es.uvigo.esei.aed1.tads.common.EmptyException;
 
 /**
  * La clase baraja de cartas (DeckOfCards) simula una baraja de cartas e 
  * internamente actúa como una pila de enumerados (enum).
  * @author Chupate2_AE
- * @version 10/05/2025
  */
  public class DeckOfCards{
     private final Stack<Card> Cards;
@@ -47,42 +49,31 @@ import java.util.Stack;
     /**
      * Elimina y devuelve (mostrándo) la carta (Card) en la cima de la baraja (pila).
      * @return carta (Card) en la cima de la baraja (pila)
-     * @throws IndexOutOfBoundsException si la baraja (pila) está vacía
+     * @throws EmptyStackException si la baraja (pila) está vacía
      */
     public Card pop() {
         if (this.isEmpty())
-            throw new IndexOutOfBoundsException("DeckOfCards is empty");
+            throw new EmptyStackException();
         return this.Cards.pop();
     }
 
     /**
      * Muestra la carta (Card) en la cima de la baraja (pila) evitando eliminarla de esta.
      * @return carta (Card) en la cima de la baraja (pila)
-     * @throws IndexOutOfBoundsException si la baraja (pila) está vacía.
+     * @throws EmptyStackException si la baraja (pila) está vacía.
      */
     public Card peek() {
         if (this.isEmpty()) 
-            throw new IndexOutOfBoundsException("DeckOfCards is empty");
+            throw new EmptyException();
         return Cards.peek();
     }
 
     /**
      * Añade una carta a la cima de la baraja (pila) de cartas.
      * @param card carta (Card) que será añadida a la cima de la baraja (pila)
-     * @throws IndexOutOfBoundsException si la baraja (pila) alcanza su capacidad máxima
      */
     public void addCard(Card card) {
         this.Cards.push(card);
-    }
-
-    /**
-     * Invoca dos métodos que permiten comenzar la partida,
-     * ya que uno añade todas las cartas necesarias a la baraja (pila) y
-     * el otro las baraja.
-     */
-    public void fillShuffle() {
-        this.fillDeck();
-        this.shuffleDeck();
     }
     
     /**

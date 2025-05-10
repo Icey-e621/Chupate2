@@ -4,7 +4,6 @@ import java.util.Stack;
 /**
  * La clase mesa (Table) representa al lugar donde se colocará la baraja de cartas (DeckOfCards).
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public class Table {
     private Stack<Card> descartes;
