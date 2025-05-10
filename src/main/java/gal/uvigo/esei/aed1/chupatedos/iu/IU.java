@@ -68,7 +68,7 @@ public class IU {
         
         int Cantidad = 0;
         do {
-            Cantidad = this.readInt("Introduzca el número de jugadores (min: 2 / max: 5): ");//lee la cantidad hasta que sea correcta
+            Cantidad = this.readInt("Introduzca el numero de jugadores (min: 2 / max: 5): ");//lee la cantidad hasta que sea correcta
         } while (Cantidad < 2 || Cantidad > 5);
         String Jugadores[] = new String[Cantidad];
 
@@ -97,7 +97,7 @@ public class IU {
      * @return el string leido
      */
     public Player readPlayerx(int pos) {
-        String name = readString("Nome do jugador " + pos + ": ");
+        String name = readString("Nombre del jugador " + pos + ": ");
         Player nOne = new Player(name);
         return nOne;
     }
