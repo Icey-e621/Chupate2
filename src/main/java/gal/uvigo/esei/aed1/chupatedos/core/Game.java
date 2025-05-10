@@ -5,7 +5,6 @@ import gal.uvigo.esei.aed1.chupatedos.iu.IU;
 /**
  * La clase juego (Game) simula una partida.
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public class Game {
     private final IU iu;
@@ -19,6 +18,7 @@ public class Game {
 
     /**
      * Constructor de la clase juego (Game).
+     * Inicializa las variables de la interfaz de usuario (IU).
      * @param iu interfaz de usuario que se inicializará
      */
     public Game(IU iu) {
@@ -56,7 +56,8 @@ public class Game {
      * el jugador que debe jugar y su siguiente.
      */
     private void estadoMesa() {
-        iu.displaymessage("Carta en la cima " + this.table.getTopCard() + " Quedan " + this.deck.size() + " Cartas en la baraja.");
+        iu.displaymessage("Carta en la cima " + this.table.getTopCard());
+        iu.displaymessage("Quedan " + this.deck.size() + " Cartas en la baraja.");
         iu.displaymessage("Es el turno de " + this.players[this.currentPlayer]);
         iu.displaymessage("el siguiente jugador es "
                 + this.players[this.siguienteJugador()].getName());
@@ -101,8 +102,8 @@ public class Game {
         
         if (this.deck.isEmpty()){
             Card tableCard = this.table.popCard();
-            
-            for (int i = 0; i< this.table.sizeDescartes();i++)
+
+            for (int i = 0; i < this.table.sizeDescartes(); i++)
                 this.deck.addCard(this.table.popCard());
 
             this.deck.shuffleDeck();
@@ -158,7 +159,7 @@ public class Game {
 
         if (this.table.getTopCard().getNumber() == 7){
             this.antiHorario = false;
-            this.currentPlayer = this.numOfPlayers - 1;
+            this.currentPlayer = this.numOfPlayers-1;
             iu.displaymessage("Empezamos invertidos");
         } else if (this.table.getTopCard().getNumber() == 2){
             this.players[this.currentPlayer].addCard(robarCarta());
@@ -171,15 +172,15 @@ public class Game {
             this.estadoMesa();
             ArrayList<Card> cartasDisponibles = this.availableCards(this.table.getTopCard());
             
-            if (cartasDisponibles.size() != 0){
-                iu.displaymessage("¿Qué carta quieres jugar? ");
+            if (!cartasDisponibles.isEmpty()){
+                iu.displaymessage("Que carta quieres jugar? ");
                 int opcion = 0;
                 
                 do{
                     for (int i = 0; i < cartasDisponibles.size();i++)
                         iu.displaymessage("\t " + i + ": " + cartasDisponibles.get(i));
                     
-                    opcion = iu.readInt("Introduce el número: ");
+                    opcion = iu.readInt("Introduce el numero: ");
                 } while (opcion < 0 || opcion > cartasDisponibles.size());
 
                 Card cartaEscogida = cartasDisponibles.get(opcion);
@@ -189,7 +190,7 @@ public class Game {
                 iu.displaymessage("No puedes jugar ninguna carta, te toca robar: " + nextCard);
                 
                 if (nextCard.getSuit() == this.table.getTopCard().getSuit() || nextCard.getNumber() == this.table.getTopCard().getNumber()){
-                    iu.displaymessage("¡Qué suerte, puedes jugarla!");
+                    iu.displaymessage("¡Que suerte, puedes jugarla!");
                     this.jugarCarta(nextCard);
                 }else{
                     this.players[this.currentPlayer].addCard(nextCard);

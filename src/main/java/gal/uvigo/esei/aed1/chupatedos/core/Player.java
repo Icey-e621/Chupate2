@@ -4,7 +4,6 @@ import java.util.ArrayList;
 /**
  * La clase jugador (Player) representa a un jugador.
  * @author Chupate2_AE
- * @version 10/05/2025
  */
 public class Player {
     private String name;
