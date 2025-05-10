@@ -158,7 +158,7 @@ public class Game {
 
         if (this.table.getTopCard().getNumber() == 7){
             this.antiHorario = false;
-            this.currentPlayer = this.numOfPlayers;
+            this.currentPlayer = this.numOfPlayers - 1;
             iu.displaymessage("Empezamos invertidos");
         } else if (this.table.getTopCard().getNumber() == 2){
             this.players[this.currentPlayer].addCard(robarCarta());
