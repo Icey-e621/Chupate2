@@ -1,7 +1,8 @@
 package gal.uvigo.esei.aed1.chupatedos.core;
 
 /**
- * Cartas baraja española
+ * La clase carta (Card) representa las cartas de una baraja española.
+ * @author Chupate2_AE
  */
 public enum Card {
   AS_OROS(1, Suit.OROS),
@@ -48,22 +49,33 @@ public enum Card {
   private final int number;
   private final Suit suit;
 
+  /**
+   * Constructor de la clase carta (Card).
+   * Inicializa el número y el palo de una carta con los parámetros recibidos.
+   * @param number número de la carta
+   * @param suit   palo de la carta
+   */
   Card(int number, Suit suit) {
     this.number = number;
     this.suit = suit;
   }
+
   /**
-   * Imprime el numero de la carta actual
+   * Imprime el número de la carta actual.
+   * @return número de la carta
    */
   public int getNumber() {
     return this.number;
   }
+
   /**
-   * Imprime el palo de la carta actual
+   * Imprime el palo de la carta actual.
+   * @return palo de la carta
    */
   public Suit getSuit() {
     return this.suit;
   }
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
@@ -79,6 +91,7 @@ public enum Card {
       case "BASTOS" ->
         suitToDisplay.append(this.suit).append(" ");
     }
+
     StringBuilder numberToDisplay = new StringBuilder();
     numberToDisplay.append(this.number < 10 ? " " + this.number : this.number);
     sb.append(" [ ").append(suitToDisplay).append(" | ").append(numberToDisplay).append(" ] ");

@@ -1,127 +1,121 @@
 package gal.uvigo.esei.aed1.chupatedos.iu;
-
 import java.util.Scanner;
-
 import gal.uvigo.esei.aed1.chupatedos.core.DeckOfCards;
-import gal.uvigo.esei.aed1.chupatedos.core.Player;
 
+/**
+ * La clase interfaz de usuario (IU) representa al intermediario (se aplica abstracción) 
+ * de la partida, entre la lógica interna (implementación) y los jugadores.
+ * Se encarga de mostrar mensajes por pantalla y de recibir información.
+ * @author Chupate2_AE
+ */
 public class IU {
-
     private final Scanner keyboard;
 
+    /**
+     * Constructor de la clase interfaz de usuario (IU).
+     */
     public IU() {
         keyboard = new Scanner(System.in);
     }
 
     /**
-     * muestra un mensaje por pantalla // la cosa Mas Reverendamente inutil que
-     * he visto y eso que yo existo : v
-     *
-     * @param msg el mensaje a mostrar
+     * Muestra el mensaje recibido como parámetro de entrada por pantalla.
+     * @param msg mensaje que se mostrará por pantalla.
      */
     public void displaymessage(String msg) {
         System.out.println(msg);
     }
 
     /**
-     * devuelve el numero leido
-     *
-     * @param mesg el mensaje a mostrar
-     * @return el numero recogido
+     * Muestra por pantalla el mensaje recibido como parámetro
+     * @param message mensaje que se quiere mostrar
+     * @return el número recogido
+     * @throws NumberFormatException si el número que se introduce no cumple con el formato
      */
-    public int readInt(String mens) throws NumberFormatException {
+    public int readInt(String menssage) throws NumberFormatException {
         int res = 0;
-
         boolean error = false;
+
         do {
             error = false;
-            System.out.println(mens);
+            System.out.println(menssage);
+            
             try {
                 res = Integer.parseInt(keyboard.nextLine());
             } catch (NumberFormatException e) {
                 error = true;
             }
+        
         } while (error);
+        
         return res;
     }
 
     /**
-     * Lee un string de teclado
-     *
-     * @param mesg mensaje a mostrar antes de la lectura
-     * @return el string leido
+     * Muestra por pantalla la ristra de caracteres recibidos como parámetro y
+     * devuelve la respuesta recibida correspondiente.
+     * @param msg mensaje que se quiere mostrar por pantalla
+     * @return repuesta (toReturn) correspondiente al mensaje mostrado (msg)
      */
     public String readString(String msg) {
-        String toret;
+        String toReturn;
+
         System.out.print(msg);
-        toret = keyboard.nextLine();
-        return toret;
+        toReturn = keyboard.nextLine();
+        
+        return toReturn;
     }
 
     /**
-     * Lee los nombres de jugadores por teclado
-     * nota la cantidad de jugadores se con con la longitud del array para otras funciones
-     *
-     * @return Un array de jugadores
+     * Solicita la cantidad de jugadores que desean jugar entre dos a 
+     * cinco (ambos incluídos).
+     * También solicita sus nombres y los añade al array de jugadores (jugadores).
+     * @return Array de jugadores (jugadores)
      */
     public String[] readPlayers() {
+        int cantidad = 0;
         
-        int Cantidad = 0;
         do {
-            Cantidad = this.readInt("Introduzca el número de jugadores (min: 2 / max: 5): ");//lee la cantidad hasta que sea correcta
-        } while (Cantidad < 2 || Cantidad > 5);
-        String Jugadores[] = new String[Cantidad];
-
+            cantidad = this.readInt("Introduzca el numero de jugadores (min: 2 / max: 5): ");
+        } while (cantidad < 2 || cantidad > 5);
         
-        for (int i = 0; i < Cantidad; i++) {
-            do{
-                Jugadores[i] = readString("Nombre del jugador " + i + ": "); //pregunta los nomres y los almacena en Jugadores
-            }while (Jugadores[i].trim() == "");   
+        String[] jugadores = new String[cantidad];
+
+        for (int i = 0; i < cantidad; i++) {
+            do {
+                jugadores[i] = readString("Nombre del jugador " + i + ": "); 
+            } while (jugadores[i].trim() == "");
 
             for (int j = 0; j<i;j++){
-                if (Jugadores[i].equals(Jugadores[j])){
-                    Jugadores[i] += " (";
-                    Jugadores[i] += i+1;
-                    Jugadores[i] += ")";
+                if (jugadores[i].equals(jugadores[j])){
+                    jugadores[i] += " (";
+                    jugadores[i] += i+1;
+                    jugadores[i] += ")";
                 }
             }
         }
 
-        return Jugadores;
+        return jugadores;
     }
 
     /**
-     * Lee un jugador por teclado
-     *
-     * @param pos el numero del turno que este jug es
-     * @return el string leido
+     * Crea una baraja de cartas (DeckOfCards).
+     * @return baraja de cartas (DeckOfCards).
      */
-    public Player readPlayerx(int pos) {
-        String name = readString("Nome do jugador " + pos + ": ");
-        Player nOne = new Player(name);
-        return nOne;
+    public DeckOfCards createDeckOfCards() {
+        return new DeckOfCards();
     }
 
     /**
-     * crea un DeckOfCards
-     *
-     * @return Deck
+     * Crea una baraja de cartas (DeckOfCards) vacía (por defecto).
+     * @return baraja de cartas (DeckOfCards) vacía.
      */
-    public DeckOfCards makeDeckOfCards() {
-        DeckOfCards deck = new DeckOfCards();
-        return deck;
-    }
-
-    /**
-     * crea un DeckOfCards vacio
-     *
-     * @return Deck
-     */
-    public DeckOfCards makeEmptyDeckOfCards() {
+    public DeckOfCards createEmptyDeckOfCards() {
         DeckOfCards emptyDeck = new DeckOfCards();
-        while (!emptyDeck.isEmpty()) {
+        
+        while (!emptyDeck.isEmpty())
             emptyDeck.pop();
-        }
+        
         return emptyDeck;
     }
 
