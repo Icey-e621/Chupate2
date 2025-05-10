@@ -56,7 +56,7 @@ public class Game {
      * el jugador que debe jugar y su siguiente.
      */
     private void estadoMesa() {
-        iu.displaymessage("Carta en la cima " + this.table.getTopCard() + " Quedan " + this.deck.size() + "Cartas en la baraja");
+        iu.displaymessage("Carta en la cima " + this.table.getTopCard() + " Quedan " + this.deck.size() + " Cartas en la baraja.");
         iu.displaymessage("Es el turno de " + this.players[this.currentPlayer]);
         iu.displaymessage("el siguiente jugador es "
                 + this.players[this.siguienteJugador()].getName());
