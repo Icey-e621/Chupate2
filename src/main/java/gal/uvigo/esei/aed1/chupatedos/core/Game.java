@@ -57,7 +57,7 @@ public class Game {
      */
     private void estadoMesa() {
         iu.displaymessage("Carta en la cima " + this.table.getTopCard());
-        iu.displaymessage("Quedan " + this.deck.size() + " Cartas en la baraja.");
+        iu.displaymessage("Quedan " + this.deck.size() + " Cartas en la baraja y " + this.table.sizeDescartes() + " en la pila de descartes.");
         iu.displaymessage("Es el turno de " + this.players[this.currentPlayer]);
         iu.displaymessage("el siguiente jugador es "
                 + this.players[this.siguienteJugador()].getName());
@@ -80,7 +80,7 @@ public class Game {
      * @return índice del siguiente jugador que tiene turno del array de jugadores (players)
      */
     private int siguienteJugador(){
-        if (antiHorario){
+        if (!antiHorario){
             if (this.currentPlayer + 1 >= this.numOfPlayers) return 0;
             return this.currentPlayer + 1;
         }
@@ -131,7 +131,6 @@ public class Game {
             this.currentPlayer = this.siguienteJugador();
             this.players[this.currentPlayer].addCard(robarCarta());
             this.players[this.currentPlayer].addCard(robarCarta());
-            this.currentPlayer = this.siguienteJugador();
         }
     }
 
@@ -158,8 +157,7 @@ public class Game {
         iu.displaymessage("\n =======\tPrimer Turno\t=======");
 
         if (this.table.getTopCard().getNumber() == 7){
-            this.antiHorario = false;
-            this.currentPlayer = this.numOfPlayers-1;
+            this.antiHorario = !this.antiHorario;
             iu.displaymessage("Empezamos invertidos");
         } else if (this.table.getTopCard().getNumber() == 2){
             this.players[this.currentPlayer].addCard(robarCarta());
