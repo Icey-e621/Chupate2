@@ -95,15 +95,15 @@ public class Player {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name).append(", tiene las cartas {");
+        sb.append(name).append(", tiene las cartas \n ________________ \n");
         
         for (Card card : this.cards){
             sb.append(card);
-            sb.append(",");
+            sb.append("\n");
         }
         
         sb.deleteCharAt(sb.length()-1);
-        sb.append("}");
+        sb.append("\n ---------------- ");
         
         return sb.toString();
     }

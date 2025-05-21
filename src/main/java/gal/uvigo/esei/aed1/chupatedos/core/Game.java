@@ -57,7 +57,8 @@ public class Game {
      */
     private void estadoMesa() {
         iu.displaymessage("Carta en la cima " + this.table.getTopCard());
-        iu.displaymessage("Quedan " + this.deck.size() + " Cartas en la baraja y " + this.table.sizeDescartes() + " en la pila de descartes.");
+        iu.displaymessage("|Quedan " + this.deck.size() + " Cartas en la baraja|");
+        iu.displaymessage("|Hay " + this.table.sizeDescartes() + " Cartas en Descartes|");
         iu.displaymessage("Es el turno de " + this.players[this.currentPlayer]);
         iu.displaymessage("el siguiente jugador es "
                 + this.players[this.siguienteJugador()].getName());
@@ -179,16 +180,16 @@ public class Game {
                         iu.displaymessage("\t " + i + ": " + cartasDisponibles.get(i));
                     
                     opcion = iu.readInt("Introduce el numero: ");
-                } while (opcion < 0 || opcion > cartasDisponibles.size());
+                } while (opcion < 0 || opcion >= cartasDisponibles.size());
 
                 Card cartaEscogida = cartasDisponibles.get(opcion);
                 this.jugarCarta(cartaEscogida);
             } else {
                 Card nextCard = robarCarta();
-                iu.displaymessage("No puedes jugar ninguna carta, te toca robar: " + nextCard);
+                iu.displaymessage( "\nJugador " + this.players[currentPlayer].getName() + " no puedes jugar ninguna carta, le toca robar " + nextCard);
                 
                 if (nextCard.getSuit() == this.table.getTopCard().getSuit() || nextCard.getNumber() == this.table.getTopCard().getNumber()){
-                    iu.displaymessage("¡Que suerte, puedes jugarla!");
+                    iu.displaymessage("Que suerte, puedes jugarla!");
                     this.jugarCarta(nextCard);
                 }else{
                     this.players[this.currentPlayer].addCard(nextCard);
